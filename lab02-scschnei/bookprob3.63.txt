@@ -1,0 +1,35 @@
+Answer to Problem 3.63, CS:APP3e pp.314-315
+-------------------------------------------
+/*
+ * The assembly code shows us we're dealing with cases 60-65 because it shows
+ * the argument is subtracted by 60 and then it checks if the resulting number
+ * is less than or equal to 5. If these conditions aren't met the code just
+ * jumps to return. If it meets those conditions, the index is the
+ * index it goes to in the jump table to figure out where to jump in the code.
+ * Index 0 and 2 both go to the place in code where result is multiplied by 8
+ * and then there is a jump to return. Index three goes to a right shift and
+ * then jumps to return. Index 1 just adds 75 to result and returns. Index 4
+ * Does its case as well as the case of index 5 and then gets 75 added to it.
+ * Index 5 squares x and then adds 75 to it.
+ */
+ 
+long switch_prob(long x, long n) {
+    long result = x;
+    switch(n) {
+        case(60):
+        case(62):
+            result = x * 8;
+            break;
+        case(63):
+            result = x >> 3;
+            break;
+        case(64):
+             x = (x << 4) - x;
+        case(65):
+            x = x * x;
+        default:
+            result = x + 75;
+            break;
+    }
+    return result;
+}

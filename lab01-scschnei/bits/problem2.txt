@@ -1,0 +1,23 @@
+Expression:  n = n & (n - 1)
+----------------------------
+This expression makes the bit representation of n have one fewer
+one bit that before. For example n = 7 is 111 and 6 is 110, so 7 & 6 is 110
+which has 2 1 bits instead of 3.
+
+This works because subtracting 1 from a number either takes away a 1 from the
+ones spot if n is odd. So, when the numbers are &ed, n has its least significant
+one bit turned into a 0. If n is even, then the least significant one bit in n
+becomes a zero in n-1 and all the less significant bits which are 0 in n become
+1 in n-1. The example for taking a one away is shown above as in the case of 7
+and 6. The other case can be illustrated by n=20.20 is 10100 in its binary
+representation. when you subtract 1 from 19 we see we get 19 which is 10011 in
+binary form. As we can see the least significant 1 in 20 becomes a 0 in 19 and
+the less significant 0's in n become 1's in n-1. Thus, it is fairly clear to see
+that when a bitwise and is applied, n results in a number with one less one bit.
+
+This provides a faster way to count one bits because you only have to do the
+number of one bits operations. In the original function you have to do number
+of bits operations in every case. The original algorithm has a runtime that is
+always equal to the number of bits in n. The faster one bits algorithm has a
+runtime of the number of bits in the worst case (the number has all 1 bits), but
+it will be faster if n's binary representation isn't all ones.

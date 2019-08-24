@@ -1,0 +1,5 @@
+When running the divider.ibits with div_10_0.rbits we run into a problem where
+we have an infinite loop. This is because our dividing function works by
+continually subtracting the dividend by the divisor. Subtracting by 0 means
+that the remainder will never decrease, so the statement to break out of the
+while loop will never be reached. Thus, we get an infinite loop.

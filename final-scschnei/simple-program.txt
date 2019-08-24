@@ -1,0 +1,43 @@
+4.1
+===
+First, the c file must get compiled. The process for this begins with the
+preprocessor taking the c file and turning it into modified source program
+text. This step just replaces any macros with the actual values and puts the
+code from the included headers into the program text. Next, the compiler takes
+this and turns it into assembly code. So prog.c will turn into prog.s via the
+compiler. Then the assembler takes the assembly and turns it into binary which
+the computer can now read at the point prog.o is created. Finally
+the linker turns the binary into an executable by merging other precomiled
+files that prog might need like printf.o for example.
+
+4.2
+===
+Between the process getting setup and the main starting the loader must load
+the program from disk memory to main memory. After it loads the memory image, it
+jumps to the program entry point which is the address of the _start function.
+This function then calls __libc_start_main. Before main runs the environment for
+the process is set up. This means the command line arguments and environmental
+variables are saved and the stack is set up for the process to run. Then control
+is handed over to the main of prog. The execve usually loads and runs processes
+on linux systems.
+
+4.3
+===
+From the system's perspective the cpu is just reading and executing the binary
+instructions in its main memory. In our case the cpu will read the instructions
+then load NULL into some space in memory, read some more instructions and then
+try to dereference p.
+
+4.4
+===
+The signal sent is SIGSEGV which leads to a segmentation fault. This happens
+because the program tries to dereference a null pointer. The CPU triggers a
+general protection fault which interrupts the program and gives control to an
+exception handler in the kernel which sends a STGSEGV signal to the offending
+process.
+
+4.5
+===
+The core is dumped in this case which means the main memory is dumped. The
+kernel, which is responsible for transitioning from one process to another, then
+restores the context of the shell process and passes control back to it.

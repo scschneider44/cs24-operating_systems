@@ -1,0 +1,26 @@
+What does the assembly code do?
+-------------------------------
+%rax = x
+%rax = 3 * x
+%rax = 3x +12
+%rax = (3x + 12) * x
+%rax = ((3x + 12) * x) - 17
+
+The first line of code puts whatever is in address [16 + %rbp] into %rax. In
+this specific case it is moving x into %rax.
+
+The second line is multiplying 3 and whatever is in register %rax and storing
+the result in %rax. In this case we get 3 * x.
+
+The third line of code is adding 12 and what is in %rax and storing it in %rax.
+In our case we get 3x + 12.
+
+The fourth line of code is multiplying whatever is in memory address [16 + %rbp]
+and %rax and storing the result in %rax. We get (3x + 12) * x because
+M[16 + %rbp] contains x as specified.
+
+Finally the contents of %rax are subtracted by 17 and the result is put into
+%rax. The final result is ((3x +12) * x) - 17.
+
+As seen above 3x^2 +12x -17 is computed. All values are 64 bit because the
+opcodes have a q suffix.

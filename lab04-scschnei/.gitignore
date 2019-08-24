@@ -1,0 +1,5 @@
+*~
+[._]*.sw[a-p]
+
+*.o
+subpython/subpython

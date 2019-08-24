@@ -1,0 +1,25 @@
+# This code operates the function similar to the one outlined in the set
+
+# function divide(dividend, divisor) begin
+#        quotient = 0
+#        remainder = dividend-quotient -- (aka dividend - 0)
+#
+#        while (true):
+#                temp = remainder - divisor
+#                if (temp < 0):
+#                    break
+#                remainder -= divisor
+#                quotient += 1
+#        done
+#        return quotient, remainder
+# end
+
+fb6  # R6<-R6^R6  -- put a zero in R6 by XORing it with itself
+a37  # R7<-R0-R6  -- put dividend in R7
+bcb  # LOOP_TOP (2): R3<-R7-R1 -- Put remainder - dividend in R3 (temp variable)
+22d3 # R3<-R3&R2  -- isolates sign bit of temp variable
+28c8 # BNZ R3 done (8) -- if remainder - dividend < 0 done
+bcf  # R7<-R7-R1  -- Update remainder (remainder-=divisor)
+17b6 # R6<-R6+1   -- Update quotient (quotient += 1)
+2982 # BNZ R6 2   -- while true (quotient will always be nonzero) LOOP TOP
+3c00 # done       -- finished: quotient in R6 and remainder in R7

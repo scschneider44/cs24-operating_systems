@@ -1,0 +1,10 @@
+The program's output only has numbers from producer 0. This is clearly unfair
+as producer 0 and 1 should produce the same amount of Fibonacci numbers. The
+reason this happens is producer 0 fills up the buffer with Fibonacci numbers it
+produces and then sthread_yield is called once the buffer is filled. Producer 1
+is then called but when it tries to add to the buffer it is already full so it
+yields to consumer which takes all of producer 0's numbers from the buffer to
+consume them. Producer 0 then refills the buffer and then producer 1 runs into
+the same issue. Thus, it appears as if producer 1 is never called but in reality
+producer 0 fills the buffer which causes producer 1 to yield and by the time
+it's done yielding the buffer has been refilled to it has to yield again.

@@ -1,0 +1,15 @@
+CS:APP3e Practice Problem 2.46, pp.111-112:
+-------------------------------------------
+A. 0.1 is .000110011[0011]... in binary. x is .00011001100110011001100 in
+binary. Thus, 0.1 - x is .00000000000000000000000110011[0011]...
+
+B. We now will consider the base 10 representation of the number above. We can
+see after 20 zeros it is simply 1/10. Thus, the decimal representation is
+2^-20 * .1 because this number is in binary so every decimal place is another
+negative exponent of 2. This is roughly equal to 9.5367*10^-8 in base 10.
+
+C. We will use the number found in (B) to complete this calculation:
+seconds off = 100 hrs * 60 mins/hr* 60 s/min * 10 * 9.5367*10^-8 s= .3433 s
+
+D. Using the number from (C) we get:
+meters off = 2,000 m/s * .3433 s = 686.6 meters

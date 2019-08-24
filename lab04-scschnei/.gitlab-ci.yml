@@ -1,0 +1,2 @@
+subpython:
+    script: "/testers/cs24/lab04/subpython/test"

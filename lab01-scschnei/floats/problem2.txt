@@ -1,0 +1,37 @@
+Part A:
+-------
+There are different results because, as mentioned in the text book, the adding
+of floats isn't associative. This is because there are only 23 bits dedicated
+to storing a floating point number so floating point numbers are rounded if
+they cannot be accurately represented with 23 bits (This corresponds to between
+6 and 9 decimal places). Thus, different orders of addition will lead to
+different rounding which will lead to different numbers explaining the lack of
+associativity.
+
+The most accurate sum is that which is in increasing magnitude because there
+should be fewer rounding errors. When you go in decreasing order, the your sum
+will become large quickly and when added to smaller numbers, the smaller
+numbers won't impact the sum due to rounding. This is also likely to occur with
+order given because as you continue summing, the sum will become large and if
+smaller numbers are at the end of the array, the same problem as stated with
+decreasing order occurs. With increasing order, the smaller numbers will get
+added to the sum when it is relatively small, so they will be able to impact
+the sum and not just be rounded out.
+
+An input that has many inputs that are all relatively small in magnitude will
+cause error because the sum will become large and the small magnitude numbers
+will not impact the sum due to rounding. A set of many numbers that are of
+large magnitude would also cause errors because if they are very large in
+magnitude they will already be rounded and then their addition would cause
+further rounding.
+
+Part B:
+-------
+This pairwise summation algorithm works because you're adding things that are
+of similar magnitude all the time so there won't be a case where a huge sum
+is getting added with a small value which wouldn't affect the sum due to
+rounding. In pairwise summation, 2 things are getting added at a time so
+rounding errors that we saw in the other methods won't occur. Furthermore,
+the algorithm's recursive nature means the things being summed will always
+be of similar magnitude because each value was reached via the same recursive
+process.

@@ -1,0 +1,43 @@
+1.2
+===
+sort_recptrs is mostly faster becuase only 8 bytes of memory are moved rather
+than 16 in the case of recinfos and 128 in the case of records. Another reason
+recptrs is faster than recinfos is recinfos has to call memcpy to copy the key
+prefix over which takes time. Furthermore, the recptrs size allows more of them
+to be in the cache which results in more cache hits which means faster sorting.
+All the abstractions have spatial locality because they're arrays.
+
+1.3
+===
+I would expect M to be at 4,096. This is because 32 KiB is 32,768 bytes
+which is 4,096 pointers because 32,768 / 8 = 4,096. This would coincide with
+L1 cache hits. L is somewhere around 25,000. The change occurs between M and L
+because L2 access is slower than L1 access and M < N < L corresponds with the
+L2 cache being hit the most. After L the collection is so big that L3 receives
+most of the cache hits. L3 is slower than L2.
+
+1.4
+===
+The abstraction of having the key prefix allows the computer to predict which
+recinfo objects will be accessed next so the cache loads the recinfo objects
+that will be accessed next so the recinfo sort won't have to go in the L2 and L3
+caches as often as the recptr sort. The key prefix allows for better locality.
+
+1.5
+===
+With large collection sets, the efficiency of caching matters more than the size
+of the data being moved. With the record and recinfo object there is better
+locality because the computer can use the keys to guess what should be loaded
+into the cache. The lower caches are so much faster that it makes up for more
+data being moved. 
+
+1.6
+===
+An explanation for such different results could be that other processes were
+running while the sorting tests were occurring. If this were the case, the CPU
+wouldn't be devoted just to sorting so the time to sort an element would be
+dependent on how much and when the cpu was devoted to the process rather than
+just the actual speed of the operation. Another possibility is that the records
+were randomly created in the worst case scenario for qsort. We know qsort is
+O(n*log(n)) for the average case, but it is O(n^2) in the worst case so if the
+spawning of the records is unlucky this could change the sorting time.

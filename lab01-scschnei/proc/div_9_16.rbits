@@ -1,0 +1,8 @@
+00000009 # set R0 to dividend: 9
+00000010 # set R1 to divisor: 16
+80000000 # set bit mask which has 1 and then 31 zeros
+ffffffff # Registers 3-5 aren't used
+ffffffff
+ffffffff
+ffffffff # quotient will go here
+ffffffff # remainder will go here

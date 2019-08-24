@@ -1,0 +1,3 @@
+*.o
+listperf
+.DS_Store

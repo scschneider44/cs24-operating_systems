@@ -1,0 +1,8 @@
+*.o
+*~
+core*
+
+syscall/greeting
+sthreads/test
+sthreads/test_arg
+sthreads/test_ret

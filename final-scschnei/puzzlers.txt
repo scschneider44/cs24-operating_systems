@@ -1,0 +1,76 @@
+3.1
+===
+The value of counter will be printed 10 times. This is because a total of 4
+processes will run with the first 2 calling 3 print statements and the last 2
+calling 2 print statements. The first run through the for loop the parent
+process will create a child and both of these processes will print out a 1 as
+they complete the first loop. During the second loop the parent will create
+another child process. The first child process will also create a new child
+leaving us with 4 processes. All 4 processes will print out a 2 for the counter
+end then all 4 processes will exit the for loop because i == 2. Then all four
+processes will print out 2 for the counter again. Thus, the value of counter
+will be printed 10 times.
+
+3.2
+===
+The value of counter printed on the first line will be 1. This is because either
+the parent of first child will be run first and the counter will be incremented
+from 0 to 1 and then printed in either situation. For any other number to be
+printed the for loop would have to been have completed at least once so 1 will
+be printed first no matter what.
+
+3.3
+===
+The value of counter printed on the last line will be 2. This is because the
+last print statement will be the print statement outside the first loop and all
+of the processes exit the for loop when counter is 2. Thus, no matter which
+process ends up printing counter last it will always be 2.
+
+3.4
+===
+The output of this program is "counter = 1" then "counter = 3" and then
+"counter = 3". This is because the SIGUSR1 signal handler is handler1 for the
+parent process and the child process calls kill first (after setting its SIGUSR1
+handler to handler2)because the parent process portion in the else statement
+calls the wait function. So the child process sends SIGUSR1 to the parent which
+is handled by handler1 which then prints out counter after it increments it
+and then it sends SIGUSR1 to the child process which makes handler2 be executed
+which prints out counter += 3 where counter was 0 to begin with. After the
+child process is killed the parent process finishes because the wait is over
+and 2 is added to the counter which is 1 in the parent process and it is printed
+so 3 is printed. Things always happen in this order due to the wait in the
+parent process section of the if else statement so the output is always the
+same.
+
+3.5
+===
+The first output, 01432, cannot occur because 4 cannot appear before 3 in either
+the parent or child process. In the parent process, val will be printed when
+it is 1 and then when it's 2. In the child process, val will be printed when it
+is 3 and then when it is 4. For val to be 4 it must've been incremented twice
+and because it is printed after every change, 4 before 3 isn't possible.
+
+The output 01342 is possible. If the fork enters the parent thread first, 1 will
+be printed first. Then the parent process will wait until the child process is
+finished thanks to the call to the wait function. Thus, we can see that val will
+be printed when it is 3 and then 4 in the child process. Once the child process
+ends the parent process will finish which will result in val being incremented
+from 1 to 2 and then printed. Thus, this is a valid output.
+
+The output 03142 is possible. If the child process gets run first then val will
+be incremented and printed when it is 3. If the thread is switched to the
+parent process before the child process finished then val will go from 2 to 1
+and be printed but then the parent process will wait. Then the child process
+will finish by incrementing val again to 4 and printing and then the parent
+process will finish by incrementing val from 1 to 2 and then printing.
+
+01234 is not a possible output. This is because 2 cannot appear before 3 or 4.
+2 is only printed at the end of the parent process and there is a call to wait
+before 2 is printed which means the child will finish running before 2 is
+printed and the child prints 3 and 4. Thus, this output is invalid.
+
+03412 is a possible output. This is the case where the child is run first to
+completion before the parent is ever called. The child increments val twice,
+printing after each increment. Then the parent runs, decrementing val and
+printing 1. Then the wait call doesn't matter because the child is done Running
+so 2 is then printed.

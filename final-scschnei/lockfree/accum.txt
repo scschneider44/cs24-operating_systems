@@ -1,0 +1,11 @@
+2.4
+===
+The accumulator implementation I made is lock-free. A scenario that would
+result in an unbounded number of steps to complete an operation by an individual
+thread would be if a different thread always completed an exchange between the
+time the old *accum value was assigned to a variable and the call to exchange.
+If a different thread always exchanged in this way this would result in an
+individual thread looping forever as the thread only completes its operation
+after it exchanges and adds value to *accum. There is no guarantee in my
+implementation that there is a finite bound on the amount of time a thread
+will take to perform a task. 

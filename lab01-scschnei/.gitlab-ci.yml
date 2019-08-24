@@ -1,0 +1,4 @@
+onebits:
+    script: "/testers/cs24/asmt1/onebits/test"
+faster_onebits:
+    script: "/testers/cs24/asmt1/faster_onebits/test"

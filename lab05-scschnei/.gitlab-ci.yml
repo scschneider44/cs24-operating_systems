@@ -1,0 +1,8 @@
+arraylist:
+    script: "/testers/cs24/lab05/arraylist/test"
+linkedlist:
+    script: "/testers/cs24/lab05/linkedlist/test"
+combined:
+    script: "/testers/cs24/lab05/combined/test"
+files:
+    script: "/testers/cs24/lab05/files/test"

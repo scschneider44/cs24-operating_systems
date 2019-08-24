@@ -1,0 +1,42 @@
+Max value CPUID accepts:  13 (0x0D)
+Max value CPUID accepts for extended information:  2147483656 (0x80000008)
+
+Vendor string:  "GenuineIntel"
+Processor family ID:  6    Model:  5    Stepping ID:  3
+Brand index:  0    (unsupported)
+
+Processor brand string:             Intel(R) Xeon(R) CPU @ 2.00GHz
+
+Instruction cache block size:  8 dwords (64 bytes)
+
+Number of cores in the package:  1
+Max addressable IDs for logical processors in the package:  4
+APIC:  yes
+x2APIC:  yes
+Initial APIC ID:  0
+Package supports multiple threads:  yes
+
+Cache index 0:  type 1 (data cache), level 1, procIDs 2, totIDs 2
+    Block size 64B, partitions 1, associativity 8, sets 64
+    Cache size:  32768 bytes
+Cache index 1:  type 2 (instruction cache), level 1, procIDs 2, totIDs 2
+    Block size 64B, partitions 1, associativity 8, sets 64
+    Cache size:  32768 bytes
+Cache index 2:  type 3 (unified cache), level 2, procIDs 2, totIDs 2
+    Block size 64B, partitions 1, associativity 8, sets 512
+    Cache size:  262144 bytes
+Cache index 3:  type 3 (unified cache), level 3, procIDs 4, totIDs 2
+    Block size 64B, partitions 1, associativity 20, sets 45056
+    Cache size:  57671680 bytes
+
+Using built-in specs.
+COLLECT_GCC=cc
+COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/8/lto-wrapper
+OFFLOAD_TARGET_NAMES=nvptx-none
+OFFLOAD_TARGET_DEFAULT=1
+Target: x86_64-linux-gnu
+Configured with: ../src/configure -v --with-pkgversion='Ubuntu 8.3.0-6ubuntu1' --with-bugurl=file:///usr/share/doc/gcc-8/README.Bugs --enable-languages=c,ada,c++,go,brig,d,fortran,objc,obj-c++ --prefix=/usr --with-gcc-major-version-only --program-suffix=-8 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-bootstrap --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-libmpx --enable-plugin --enable-default-pie --with-system-zlib --with-target-system-zlib --enable-objc-gc=auto --enable-multiarch --disable-werror --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu
+Thread model: posix
+gcc version 8.3.0 (Ubuntu 8.3.0-6ubuntu1) 
+
+Linux cs24-2 5.0.0-1004-gcp #4-Ubuntu SMP Mon Apr 15 16:32:05 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux

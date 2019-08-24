@@ -1,0 +1,2 @@
+soalloc:
+    script: "/testers/cs24/midterm/soalloc/test"
